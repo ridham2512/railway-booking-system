@@ -25,14 +25,14 @@ class passNode {
     String train_class;
     String date;
     int seatNo;
-    float fare;          // NEW: fare paid by this passenger
+    float fare;        
     passNode next;
 }
 
 // ==================== Seat matrix and booking system ====================
 class seatMatrix {
     int[][] seat = new int[4][5];
-    HashSet<Integer> set = new HashSet<>();       // unbooked (available) seat numbers
+    HashSet<Integer> set = new HashSet<>();     
     HashMap<String, Integer> map = new HashMap<>();
     Queue<passNode> waiting = new LinkedList<>();
 
@@ -63,7 +63,7 @@ class seatMatrix {
         }
     }
 
-    // ---------------- NEW FEATURE 3: Seat Availability Summary ----------------
+    // ---------------- 3: Seat Availability Summary ----------------
     void showAvailabilitySummary() {
         int totalSeats = 20;
         int available = set.size();
@@ -79,16 +79,15 @@ class seatMatrix {
     }
 }
 
-// ==================== Fare calculator (NEW FEATURE 1) ====================
+// ==================== Fare calculator  ====================
 class FareCalculator {
-    // Base fare for every class. Easy to explain: it's just a lookup table.
     static float getFare(String travelClass) {
         switch (travelClass) {
             case "Sleeper": return 500f;
             case "1st AC":  return 2000f;
             case "2nd AC":  return 1500f;
             case "3rd AC":  return 1000f;
-            default:        return 300f;   // General
+            default:        return 300f;   
         }
     }
 }
@@ -139,7 +138,7 @@ class operations1 {
             default: newNode.train_class = "General"; break;
         }
 
-        // ---------------- NEW: fare gets calculated right after class is chosen ----------------
+        // ----------------fare gets calculated right after class is chosen ----------------
         newNode.fare = FareCalculator.getFare(newNode.train_class);
 
         while (true) {
@@ -183,7 +182,7 @@ class operations1 {
         System.out.println("Date: " + newNode.date);
         System.out.println("Class: " + newNode.train_class);
         System.out.println("Seat No.: " + newNode.seatNo);
-        System.out.println("Fare: Rs. " + newNode.fare);   // NEW: show fare on the printed ticket
+        System.out.println("Fare: Rs. " + newNode.fare); 
         System.out.println("------------------");
 
         if (head == null) return newNode;
@@ -210,7 +209,6 @@ class operations1 {
     }
 
     // ---------------- NEW FEATURE 2: Search passenger by registration number ----------------
-    // Simple linear search over the linked list - O(n)
     void searchByRegNo(passNode head, int regNo) {
         passNode ptr = head;
         while (ptr != null) {
@@ -346,7 +344,7 @@ class operation2 {
         }
     }
 
-    // ---------------- NEW FEATURE 2 (wiring): Search passenger ----------------
+    // ---------------- Search passenger ----------------
     void searchPassenger() {
         System.out.println("Choose train (1-5) to search in:");
         for (int i = 0; i < 5; i++) {
@@ -360,7 +358,7 @@ class operation2 {
         }
     }
 
-    // ---------------- NEW FEATURE 3 (wiring): Seat availability ----------------
+    // ---------------- Seat availability ----------------
     void showAvailability() {
         System.out.println("Choose train (1-5):");
         for (int i = 0; i < 5; i++) {
@@ -384,8 +382,8 @@ public class Railway {
             System.out.println("1. Book Train");
             System.out.println("2. Display All Passengers");
             System.out.println("3. Cancel Booking");
-            System.out.println("4. Search Passenger by Reg. No.");   // NEW
-            System.out.println("5. Show Seat Availability");         // NEW
+            System.out.println("4. Search Passenger by Reg. No.");   
+            System.out.println("5. Show Seat Availability");    
             System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
