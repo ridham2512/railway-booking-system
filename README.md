@@ -87,4 +87,4 @@ Travel dates are strictly validated during booking:
 - **Fare Calculation** — `FareCalculator.getFare(class)` is a simple lookup table (switch-case) returning a fixed base price per travel class.
 - **Search by Reg. No.** — a linear search (`O(n)`) over the passenger linked list comparing `Reg_no`.
 - **Seat Availability Summary** — reads directly off the existing `HashSet` size and `Queue` size; no extra bookkeeping needed.
-- **Date Validation** — uses `LocalDate.parse()` with `DateTimeFormatter` to enforce format, valid calendar dates, and future-only travel dates.
+- **Date Validation** — uses `LocalDate.parse()` with `DateTimeFormatter` to enforce format, valid calendar dates, and future-only travel dates
