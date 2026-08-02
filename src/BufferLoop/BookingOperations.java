@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 class operations1 {
     Scanner sc = new Scanner(System.in);
 
-    passNode book_ticket(passNode head, seatMatrix getSeat) {
+    passNode book_ticket(passNode head, seatMatrix getSeat, Train1 train) {
         passNode newNode = new passNode();
         newNode.next = null;
 
@@ -53,6 +53,13 @@ class operations1 {
 
         // ----------------fare gets calculated right after class is chosen ----------------
         newNode.fare = FareCalculator.getFare(newNode.train_class);
+
+        // ---- stamp train route & timing onto the booking ----
+        newNode.trainName     = train.trainName;
+        newNode.source        = train.source;
+        newNode.destination   = train.destination;
+        newNode.departureTime = train.startTime;
+        newNode.arrivalTime   = train.endTime;
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         while (true) {
@@ -117,14 +124,17 @@ class operations1 {
         }
 
         System.out.println("\n----- Ticket -----");
-        System.out.println("Name: " + newNode.fName + " " + newNode.lName);
-        System.out.println("Age: " + newNode.age);
-        System.out.println("Gender: " + newNode.gender);
-        System.out.println("Reg. No.: " + newNode.Reg_no);
-        System.out.println("Date: " + newNode.date);
-        System.out.println("Class: " + newNode.train_class);
-        System.out.println("Seat No.: " + newNode.seatNo);
-        System.out.println("Fare: Rs. " + newNode.fare);
+        System.out.println("Train     : " + newNode.trainName);
+        System.out.println("Route     : " + newNode.source + " -> " + newNode.destination);
+        System.out.println("Departure : " + newNode.departureTime + "  Arrival: " + newNode.arrivalTime);
+        System.out.println("Name      : " + newNode.fName + " " + newNode.lName);
+        System.out.println("Age       : " + newNode.age);
+        System.out.println("Gender    : " + newNode.gender);
+        System.out.println("Reg. No.  : " + newNode.Reg_no);
+        System.out.println("Date      : " + newNode.date);
+        System.out.println("Class     : " + newNode.train_class);
+        System.out.println("Seat No.  : " + newNode.seatNo);
+        System.out.println("Fare      : Rs. " + newNode.fare);
         System.out.println("------------------");
 
         if (head == null) return newNode;
@@ -136,16 +146,19 @@ class operations1 {
 
     void display_passenger(passNode head) {
         if (head == null) {
-            System.out.println("No passengers found.");
+            System.out.println("  No passengers found.");
             return;
         }
         passNode ptr = head;
         while (ptr != null) {
-            System.out.println("\nName: " + ptr.fName + " " + ptr.lName);
-            System.out.println("Age: " + ptr.age + ", Gender: " + ptr.gender);
-            System.out.println("Reg. No.: " + ptr.Reg_no + ", Date: " + ptr.date);
-            System.out.println("Class: " + ptr.train_class + ", Seat: " + ptr.seatNo);
-            System.out.println("Fare: Rs. " + ptr.fare);
+            System.out.println("  Name      : " + ptr.fName + " " + ptr.lName);
+            System.out.println("  Age       : " + ptr.age + "  Gender: " + ptr.gender);
+            System.out.println("  Route     : " + ptr.source + " -> " + ptr.destination);
+            System.out.println("  Departure : " + ptr.departureTime + "  Arrival: " + ptr.arrivalTime);
+            System.out.println("  Reg. No.  : " + ptr.Reg_no + "  Date: " + ptr.date);
+            System.out.println("  Class     : " + ptr.train_class + "  Seat: " + ptr.seatNo);
+            System.out.println("  Fare      : Rs. " + ptr.fare);
+            System.out.println("  ----------");
             ptr = ptr.next;
         }
     }
@@ -156,10 +169,13 @@ class operations1 {
         while (ptr != null) {
             if (ptr.Reg_no == regNo) {
                 System.out.println("\n----- Passenger Found -----");
-                System.out.println("Name: " + ptr.fName + " " + ptr.lName);
-                System.out.println("Age: " + ptr.age + ", Gender: " + ptr.gender);
-                System.out.println("Date: " + ptr.date + ", Class: " + ptr.train_class);
-                System.out.println("Seat No.: " + ptr.seatNo + ", Fare: Rs. " + ptr.fare);
+                System.out.println("Train     : " + ptr.trainName);
+                System.out.println("Route     : " + ptr.source + " -> " + ptr.destination);
+                System.out.println("Departure : " + ptr.departureTime + "  Arrival: " + ptr.arrivalTime);
+                System.out.println("Name      : " + ptr.fName + " " + ptr.lName);
+                System.out.println("Age       : " + ptr.age + "  Gender: " + ptr.gender);
+                System.out.println("Date      : " + ptr.date + "  Class: " + ptr.train_class);
+                System.out.println("Seat No.  : " + ptr.seatNo + "  Fare: Rs. " + ptr.fare);
                 System.out.println("----------------------------");
                 return;
             }

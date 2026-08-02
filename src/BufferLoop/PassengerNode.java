@@ -10,5 +10,11 @@ class passNode {
     String date;
     int seatNo;
     float fare;
+    // ---- train route & timing (filled at booking time) ----
+    String trainName;
+    String source;
+    String destination;
+    String departureTime;
+    String arrivalTime;
     passNode next;
 }
