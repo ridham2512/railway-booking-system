@@ -51,10 +51,8 @@ class operations1 {
             default: newNode.train_class = "General"; break;
         }
 
-        // ----------------fare gets calculated right after class is chosen ----------------
         newNode.fare = FareCalculator.getFare(newNode.train_class);
 
-        // ---- stamp train route & timing onto the booking ----
         newNode.trainName     = train.trainName;
         newNode.source        = train.source;
         newNode.destination   = train.destination;
@@ -163,7 +161,7 @@ class operations1 {
         }
     }
 
-    // ---------------- NEW FEATURE 2: Search passenger by registration number ----------------
+    // --------------- Search passenger by registration number ----------------
     void searchByRegNo(passNode head, int regNo) {
         passNode ptr = head;
         while (ptr != null) {
